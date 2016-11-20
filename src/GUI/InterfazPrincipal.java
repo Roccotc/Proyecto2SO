@@ -17,10 +17,12 @@ import javax.swing.DefaultListModel;
 public class InterfazPrincipal extends javax.swing.JFrame {
 
     
-    private DefaultListModel modelo;
-    private int IDProceso;
-    private int MaxCantRecursos [];
+    DefaultListModel modelo;
+    private int IDProceso=0;
+    private int MaxCantRecursos [] = new int[150];
     private Proceso VectorDeProceso [];
+    private Recurso VectorDeRecurso [];
+    private int idRecurso;
     
     public InterfazPrincipal(Proceso[] VectorDeProceso, Recurso[] VectorDeRecurso ) {
         initComponents();
@@ -28,14 +30,24 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         this.VectorDeProceso = VectorDeProceso;
-        modelo = new DefaultListModel ();
+        this.VectorDeRecurso = VectorDeRecurso;
+        modelo = new DefaultListModel();
         ListaRecursosAsignados.setModel(modelo);
+        llenarComboBoxRecursos();
     }
 
     private InterfazPrincipal() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    private void llenarComboBoxRecursos(){
+        for (int i = 0; i < VectorDeRecurso.length; i++) {
+            ComboBoxTipoRecursos.addItem(VectorDeRecurso[i].getNombre());
+            
+            
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +63,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         NombreProceso = new javax.swing.JTextField();
-        ListaTipoRecursos = new javax.swing.JComboBox();
+        ComboBoxTipoRecursos = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         CMaxProceso = new javax.swing.JTextField();
@@ -131,11 +143,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             }
         });
 
-        ListaRecursosAsignados.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(ListaRecursosAsignados);
 
         CrearProceso.setBackground(new java.awt.Color(170, 199, 170));
@@ -149,6 +156,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         AgregarAProceso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         AgregarAProceso.setText("Agregar");
+        AgregarAProceso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgregarAProcesoMouseClicked(evt);
+            }
+        });
         AgregarAProceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarAProcesoActionPerformed(evt);
@@ -175,7 +187,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(NombreProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(ListaTipoRecursos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(ComboBoxTipoRecursos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(44, 44, 44)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -203,7 +215,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ListaTipoRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ComboBoxTipoRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -550,6 +562,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         VectorDeProceso [IDProceso] = p;
         IDProceso++;
         
+        for (int i = 0; i < MaxCantRecursos.length ; i++) {
+            MaxCantRecursos[i]=0;
+        }
+        
+        modelo.removeAllElements();
+        NombreProceso.setText("");
+        
+        
     }//GEN-LAST:event_CrearProcesoActionPerformed
 
     private void AgregarAProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarAProcesoActionPerformed
@@ -557,6 +577,16 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_AgregarAProcesoActionPerformed
+
+    private void AgregarAProcesoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarAProcesoMouseClicked
+        
+        idRecurso = ComboBoxTipoRecursos.getSelectedIndex();
+        String TipoRecurso = ComboBoxTipoRecursos.getSelectedItem().toString();
+        modelo.addElement(TipoRecurso);
+        MaxCantRecursos[idRecurso]=Integer.parseInt(CMaxProceso.getText());
+        
+        
+    }//GEN-LAST:event_AgregarAProcesoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -596,10 +626,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarAProceso;
     private javax.swing.JTextField CMaxProceso;
+    private javax.swing.JComboBox ComboBoxTipoRecursos;
     private javax.swing.JButton CrearProceso;
     private javax.swing.JComboBox ListaProcesos;
     private javax.swing.JList ListaRecursosAsignados;
-    private javax.swing.JComboBox ListaTipoRecursos;
     private javax.swing.JTextField NombreProceso;
     private javax.swing.JTextField NombreRecurso;
     private javax.swing.JTextField NombreRecurso1;
