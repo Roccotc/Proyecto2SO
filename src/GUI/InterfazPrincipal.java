@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Logica.Proceso;
 import java.awt.Color;
 import javax.swing.DefaultListModel;
 
@@ -16,6 +17,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     
     private DefaultListModel modelo;
+    private int IDProceso;
+    private int MaxCantRecursos [];
     
     public InterfazPrincipal(Proceso[] VectorDeProceso, Recurso[] VectorDeProceso ) {
         initComponents();
@@ -109,12 +112,18 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Crear Proceso");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("ID del Proceso");
+        jLabel2.setText("Nombre del Proceso");
 
         jLabel3.setText("Selecciona el tipo de Recurso");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Cantidad Máxima");
+
+        CMaxProceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CMaxProcesoActionPerformed(evt);
+            }
+        });
 
         ListaRecursosAsignados.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -126,6 +135,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         CrearProceso.setBackground(new java.awt.Color(170, 199, 170));
         CrearProceso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         CrearProceso.setText("Crear");
+        CrearProceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearProcesoActionPerformed(evt);
+            }
+        });
 
         AgregarAProceso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         AgregarAProceso.setText("Agregar");
@@ -139,10 +153,18 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(NombreProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(CMaxProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(NombreProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(ListaTipoRecursos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(44, 44, 44)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -151,14 +173,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                                         .addComponent(CrearProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(37, 37, 37))))
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(CMaxProceso))
-                                .addComponent(ListaTipoRecursos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(37, 37, 37))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(159, 159, 159)
                         .addComponent(jLabel1)))
@@ -194,6 +209,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         jLabel6.setText("Selecciona el Proceso");
 
+        ListaProcesos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListaProcesosActionPerformed(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Recurso");
 
@@ -215,9 +236,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ListaProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6))
-                                .addGap(94, 94, 94))
+                                    .addComponent(jLabel6)
+                                    .addComponent(ListaProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(75, 75, 75))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Solicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -499,6 +520,23 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CMaxProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CMaxProcesoActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_CMaxProcesoActionPerformed
+
+    private void ListaProcesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaProcesosActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_ListaProcesosActionPerformed
+
+    private void CrearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearProcesoActionPerformed
+       
+        Proceso p1 = new Proceso (IDProceso, NombreProceso.getText(), MaxCantRecursos);
+    }//GEN-LAST:event_CrearProcesoActionPerformed
 
     /**
      * @param args the command line arguments

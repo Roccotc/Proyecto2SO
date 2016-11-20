@@ -153,6 +153,7 @@ public class Predicción {
                     j++;
                 }
             }
+            
             if (!asignado) {
                 break;  //si no esta asignado
             }

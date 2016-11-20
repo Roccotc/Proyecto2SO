@@ -4,10 +4,6 @@ package GUI;
 import Logica.Proceso;
 import Logica.Recurso;
 
-
-
-
-
 public class RecursosDelSistema extends javax.swing.JFrame {
 
     
