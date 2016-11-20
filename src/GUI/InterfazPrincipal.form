@@ -176,16 +176,6 @@
         <Component class="javax.swing.JTextField" name="NombreProceso">
         </Component>
         <Component class="javax.swing.JComboBox" name="ListaTipoRecursos">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -336,16 +326,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="ListaProcesos">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="NombreRecurso">
         </Component>
@@ -391,12 +371,10 @@
                       <Component id="jLabel10" min="-2" pref="93" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel18" min="-2" pref="161" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel12" max="32767" attributes="0"/>
-                              <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel15" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel12" max="32767" attributes="0"/>
+                          <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel15" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel14" alignment="0" pref="190" max="32767" attributes="0"/>
                           <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
                       </Group>

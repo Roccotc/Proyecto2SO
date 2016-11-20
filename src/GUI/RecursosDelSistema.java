@@ -1,15 +1,15 @@
 
 package GUI;
 
-import Logica.Proceso;
-import Logica.Recurso;
-
 
 public class RecursosDelSistema extends javax.swing.JFrame {
 
     
     public RecursosDelSistema(Recurso [] vecRecursos, Proceso [] vecProcesos) {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        ListaNuevosRecursos.removeAllItems();
     }
 
     
@@ -39,10 +39,13 @@ public class RecursosDelSistema extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Cantidad");
 
-        ListaNuevosRecursos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         AgregarRecurso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         AgregarRecurso.setText("Agregar");
+        AgregarRecurso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgregarRecursoMouseClicked(evt);
+            }
+        });
 
         Iniciar.setBackground(new java.awt.Color(102, 255, 102));
         Iniciar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -115,6 +118,20 @@ public class RecursosDelSistema extends javax.swing.JFrame {
         main.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_IniciarMouseClicked
+
+    private void AgregarRecursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarRecursoMouseClicked
+        // TODO add your handling code here:
+        Recurso r = new Recurso ();
+        r.setNombre(NombreRecurso.getText());
+        r.setCantidad(CantidadRecurso.getText());
+        int vec[];
+        vec
+        
+        VectorDeRecursos.
+        
+        
+        
+    }//GEN-LAST:event_AgregarRecursoMouseClicked
 
     /**
      * @param args the command line arguments
