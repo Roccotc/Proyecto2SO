@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Logica.Proceso;
 import Logica.Recurso;
 
 /**
@@ -12,10 +13,10 @@ import Logica.Recurso;
  * @author Rocco
  */
 public class RecursosDelSistema extends javax.swing.JFrame {
-
-    /**
-     * Creates new form RecursosDelSistema
-     */
+    
+    private Proceso VectorDeProcesos[]; 
+    private Proceso VectorDeRecursos[]; 
+    
     public RecursosDelSistema() {
         initComponents();
         setLocationRelativeTo(null);
