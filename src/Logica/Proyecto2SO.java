@@ -13,9 +13,14 @@ public class Proyecto2SO {
         } catch (Exception ex) { 
         ex.printStackTrace(); 
         }   
-
-        RecursosDelSistema IngresarDatos = new RecursosDelSistema();
+        
+        Recurso vecRecursos [] = new Recurso [150];
+        Proceso vecProcesos [] = new Proceso [150];
+        
+        RecursosDelSistema IngresarDatos = new RecursosDelSistema(vecRecursos, vecProcesos);
         IngresarDatos.setVisible(true);
+        
+        
         
     }
     
