@@ -6,6 +6,7 @@
 package GUI;
 
 import Logica.Proceso;
+import Logica.Recurso;
 import java.awt.Color;
 import javax.swing.DefaultListModel;
 
@@ -20,7 +21,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private int IDProceso;
     private int MaxCantRecursos [];
     
-    public InterfazPrincipal(Proceso[] VectorDeProceso, Recurso[] VectorDeProceso ) {
+    public InterfazPrincipal(Proceso[] VectorDeProceso, Recurso[] VectorDeRecurso ) {
         initComponents();
         this.getContentPane().setBackground(Color.lightGray);
         setLocationRelativeTo(null);
@@ -28,6 +29,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         
         modelo = new DefaultListModel ();
         ListaRecursosAsignados.setModel(modelo);
+    }
+
+    private InterfazPrincipal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -536,6 +541,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private void CrearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearProcesoActionPerformed
        
         Proceso p1 = new Proceso (IDProceso, NombreProceso.getText(), MaxCantRecursos);
+        
     }//GEN-LAST:event_CrearProcesoActionPerformed
 
     /**

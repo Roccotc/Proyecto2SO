@@ -142,7 +142,9 @@ public class Predicción {
         int j = 0;
  
         while (j < CantProcesos) {  //hasta que todos los procesos se asignen
+            
             boolean asignado = false;
+            
             for (int i = 0; i < CantProcesos; i++) {
                 if (!done[i] && chequear(i)) {  //intentando asignar
                     for (int k = 0; k < CantRecursos; k++) {
