@@ -1,6 +1,9 @@
 
 package GUI;
 
+import Logica.Proceso;
+import Logica.Recurso;
+
 
 
 
@@ -9,18 +12,20 @@ public class RecursosDelSistema extends javax.swing.JFrame {
 
     
     private Proceso VectorDeProcesos[]; 
-    private Proceso VectorDeRecursos[]; 
+    private Recurso VectorDeRecursos[]; 
     
-    public RecursosDelSistema() {
 
 
+
     
-    public RecursosDelSistema(Recurso [] vecRecursos, Proceso [] vecProcesos) {
+    public RecursosDelSistema(Recurso[] vecRecursos, Proceso[] vecProcesos) {
 
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         ListaNuevosRecursos.removeAllItems();
+        this.VectorDeProcesos = vecProcesos;
+        this.VectorDeRecursos = vecRecursos;
     }
 
     
