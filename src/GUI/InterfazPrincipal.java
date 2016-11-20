@@ -20,13 +20,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private DefaultListModel modelo;
     private int IDProceso;
     private int MaxCantRecursos [];
+    private Proceso VectorDeProceso [];
     
     public InterfazPrincipal(Proceso[] VectorDeProceso, Recurso[] VectorDeRecurso ) {
         initComponents();
         this.getContentPane().setBackground(Color.lightGray);
         setLocationRelativeTo(null);
         setResizable(false);
-        
+        this.VectorDeProceso = VectorDeProceso;
         modelo = new DefaultListModel ();
         ListaRecursosAsignados.setModel(modelo);
     }
@@ -148,6 +149,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         AgregarAProceso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         AgregarAProceso.setText("Agregar");
+        AgregarAProceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarAProcesoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -539,10 +545,18 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ListaProcesosActionPerformed
 
     private void CrearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearProcesoActionPerformed
-       
-        Proceso p1 = new Proceso (IDProceso, NombreProceso.getText(), MaxCantRecursos);
+
+        Proceso p = new Proceso (IDProceso, NombreProceso.getText(), MaxCantRecursos);
+        VectorDeProceso [IDProceso] = p;
+        IDProceso++;
         
     }//GEN-LAST:event_CrearProcesoActionPerformed
+
+    private void AgregarAProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarAProcesoActionPerformed
+       
+        
+        
+    }//GEN-LAST:event_AgregarAProcesoActionPerformed
 
     /**
      * @param args the command line arguments
