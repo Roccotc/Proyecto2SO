@@ -17,7 +17,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     
     private DefaultListModel modelo;
     
-    public InterfazPrincipal() {
+    public InterfazPrincipal(Proceso[] VectorDeProceso, Recurso[] VectorDeProceso ) {
         initComponents();
         this.getContentPane().setBackground(Color.lightGray);
         setLocationRelativeTo(null);

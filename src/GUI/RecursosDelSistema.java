@@ -12,7 +12,8 @@ public class RecursosDelSistema extends javax.swing.JFrame {
 
     
     private Proceso VectorDeProcesos[]; 
-    private Recurso VectorDeRecursos[]; 
+    private Recurso VectorDeRecursos[];
+    private int idRecurso = 0;
     
 
 
@@ -26,6 +27,10 @@ public class RecursosDelSistema extends javax.swing.JFrame {
         ListaNuevosRecursos.removeAllItems();
         this.VectorDeProcesos = vecProcesos;
         this.VectorDeRecursos = vecRecursos;
+    }
+
+    private RecursosDelSistema() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
@@ -130,20 +135,25 @@ public class RecursosDelSistema extends javax.swing.JFrame {
 
     private void IniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarMouseClicked
         // TODO add your handling code here:
-        InterfazPrincipal main = new InterfazPrincipal();
+        InterfazPrincipal main = new InterfazPrincipal(VectorDeProcesos,VectorDeRecursos);
         main.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_IniciarMouseClicked
 
     private void AgregarRecursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarRecursoMouseClicked
         // TODO add your handling code here:
+      if(!"".equals(NombreRecurso.getText()) && !"".equals(CantidadRecurso.getText()))
+       {
         Recurso r = new Recurso ();
         r.setNombre(NombreRecurso.getText());
-        r.setCantidad(CantidadRecurso.getText());
-        int vec[];
-        vec
+        r.setCantRecurso(Integer.parseInt(CantidadRecurso.getText()));
+        ListaNuevosRecursos.addItem(NombreRecurso.getText());
+        VectorDeRecursos [idRecurso] = r;
+        idRecurso++;
+        NombreRecurso.setText("");
+        CantidadRecurso.setText("");
         
-        VectorDeRecursos.
+       }
         
         
         
