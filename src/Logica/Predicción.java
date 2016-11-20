@@ -78,8 +78,8 @@ public class Predicción {
         this.posj = posj;
     }
     
+    
     //Constructores
-
     public Predicción(int[] recursos) {
         this.recursos = recursos;
     }
@@ -87,14 +87,13 @@ public class Predicción {
     
     
     //Metodos
-    
     private void insertarProceso (int maximo[]) {
     
         for (int j = 0; j < recursos.length; j++) {
             asignados[posi][j]=0;
         }
         
-        for (int j = 0; j < maximo.length; j++) {
+        for (int j = 0; j < recursos.length; j++) {
             maximos[posi][j]=maximo[j];
         }
         
@@ -102,6 +101,13 @@ public class Predicción {
     
     }
     
+    private void asignar (int [] a1){
+    
+        for (int i = 0; i <recursos.length; i++) {
+            asignados[posi][i]=a1[i];
+        }
+    
+    }
     
     private void entrada() {
          

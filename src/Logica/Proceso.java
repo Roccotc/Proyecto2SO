@@ -38,7 +38,5 @@ public class Proceso {
         this.nombre = nombre;
         this.MaxCantRecursos = MaxCantRecursos;
     }
-
-    
     
 }
