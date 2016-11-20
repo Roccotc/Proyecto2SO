@@ -6,10 +6,103 @@ public class Predicción {
     private int necesarios [][];
     private int asignados [][];
     private int maximos [][];
+    private int recursos [];
     private int disponibles [];
     private int CantProcesos;
     private int CantRecursos;
- 
+    private int posi = 0;
+    private int posj;
+    
+    // Getters and Setters
+    public int[][] getNecesarios() {
+        return necesarios;
+    }
+
+    public void setNecesarios(int[][] necesarios) {
+        this.necesarios = necesarios;
+    }
+
+    public int[][] getAsignados() {
+        return asignados;
+    }
+
+    public void setAsignados(int[][] asignados) {
+        this.asignados = asignados;
+    }
+
+    public int[][] getMaximos() {
+        return maximos;
+    }
+
+    public void setMaximos(int[][] maximos) {
+        this.maximos = maximos;
+    }
+
+    public int[] getDisponibles() {
+        return disponibles;
+    }
+
+    public void setDisponibles(int[] disponibles) {
+        this.disponibles = disponibles;
+    }
+
+    public int getCantProcesos() {
+        return CantProcesos;
+    }
+
+    public void setCantProcesos(int CantProcesos) {
+        this.CantProcesos = CantProcesos;
+    }
+
+    public int getCantRecursos() {
+        return CantRecursos;
+    }
+
+    public void setCantRecursos(int CantRecursos) {
+        this.CantRecursos = CantRecursos;
+    }
+
+    public int getPosi() {
+        return posi;
+    }
+
+    public void setPosi(int posi) {
+        this.posi = posi;
+    }
+
+    public int getPosj() {
+        return posj;
+    }
+
+    public void setPosj(int posj) {
+        this.posj = posj;
+    }
+    
+    //Constructores
+
+    public Predicción(int[] recursos) {
+        this.recursos = recursos;
+    }
+    
+    
+    
+    //Metodos
+    
+    private void insertarProceso (int maximo[]) {
+    
+        for (int j = 0; j < recursos.length; j++) {
+            asignados[posi][j]=0;
+        }
+        
+        for (int j = 0; j < maximo.length; j++) {
+            maximos[posi][j]=maximo[j];
+        }
+        
+        posi++;
+    
+    }
+    
+    
     private void entrada() {
          
         necesarios = new int[CantProcesos][CantRecursos];  //inicializacion de arrays
@@ -18,8 +111,7 @@ public class Predicción {
         disponibles = new int [CantRecursos];
         
     }
-     
- 
+    
     private int[][] calculoNecesarios() {
         for (int i = 0; i < CantProcesos; i++) {
             for (int j = 0; j < CantRecursos; j++) //calculando matriz de necesarios
