@@ -5,7 +5,7 @@ public class Proceso {
     
     private int id;
     private String nombre;
-    private int MaxCantRecursos [];
+    private int MaxCantRecursos [] = new int[150] ;
     
     //Getters and Setters
     public int getId() {
@@ -38,5 +38,4 @@ public class Proceso {
         this.nombre = nombre;
         this.MaxCantRecursos = MaxCantRecursos;
     }
-    
 }

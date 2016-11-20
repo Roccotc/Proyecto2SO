@@ -87,14 +87,14 @@ public class Predicción {
     
     
     //Metodos
-    private void insertarProceso (int maximo[]) {
+    private void insertarProceso (int maxRecursosPerProceso[], int vectorDeRecursos[] ) {
     
-        for (int j = 0; j < recursos.length; j++) {
+        for (int j = 0; j < vectorDeRecursos.length; j++) {
             asignados[posi][j]=0;
         }
-        
-        for (int j = 0; j < recursos.length; j++) {
-            maximos[posi][j]=maximo[j];
+
+        for (int j = 0; j < maxRecursosPerProceso.length; j++) {
+            maximos[posi][j]=maxRecursosPerProceso[j];
         }
         
         posi++;
@@ -173,5 +173,5 @@ public class Predicción {
         } else {
             System.out.println("Todos los procesos se pueden asignar de forma segura");
         }
-     } 
+    } 
 }
