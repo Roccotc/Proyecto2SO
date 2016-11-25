@@ -1,6 +1,9 @@
 
 package Logica;
 
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
 public class Predicción {
     
     private int necesarios [][] = new int[150][150];     // Matriz resta entre maximos y asignados  
@@ -11,6 +14,7 @@ public class Predicción {
     private int disponibles [] = new int[150];           // Vector que posee los recursos disponibles por asignar 
     private int finalizados [] = new int[150];           // Vector que indica si el proceso hs finalizado o no
     private int auxiliar [] = new int[150];
+    public JTextArea ConsolePrediccion;
     private int CantProcesos;
     private int CantRecursos;
     private long tiempo = 0;
@@ -132,11 +136,11 @@ public class Predicción {
     // --------------------------- CONSTRUCTOR ---------------------------
     
 
-    public Predicción(Recurso [] x) {
+    public Predicción(Recurso [] x, JTextArea ConsolePrediccion) {
 
         this.CantRecursos = x.length;
         this.CantProcesos = 150;
-        
+        this.ConsolePrediccion=ConsolePrediccion;
         
         
         for (int i = 0; i < 150; i++) {
@@ -265,6 +269,7 @@ public class Predicción {
             }
             ProcesosBloqueados++;
             ProcesosBloqueadosT++;
+            ConsolePrediccion.append("Se Bloqueo el proceso "+idProceso+" \n");
         }
         else
         {
@@ -273,6 +278,7 @@ public class Predicción {
             }
             ProcesosBloqueados++;
             ProcesosBloqueadosT++;
+            ConsolePrediccion.append("Se Bloqueo el proceso "+idProceso+" \n");
         }
     }
     
@@ -404,6 +410,7 @@ public class Predicción {
             
             finalizados[idProceso]= 1;
             ProcesosFinalizados++;
+            ConsolePrediccion.append("Proces "+idProceso+" finalizo \n");
         }
     }
     

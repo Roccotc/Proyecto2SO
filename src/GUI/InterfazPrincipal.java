@@ -42,8 +42,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         setResizable(false);
         this.VectorDeProceso = VectorDeProceso;
         this.VectorDeRecurso = VectorDeRecurso;
-        this.Prediccion = new Predicción (VectorDeRecurso);
-        this.Deteccion = new Detección (VectorDeRecurso);
+        this.Prediccion = new Predicción (VectorDeRecurso,ConsolePrediccion);
+        this.Deteccion = new Detección (VectorDeRecurso, ConsoleDeteccion);
         modelo = new DefaultListModel();
         ListaRecursosAsignados.setModel(modelo);
         llenarComboBoxRecursos();
@@ -139,7 +139,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ConsolePrediccion = new javax.swing.JTextArea();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -158,7 +158,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         TotEliminados = new javax.swing.JLabel();
         TiempoDeteccion = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        ConsoleDeteccion = new javax.swing.JTextArea();
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Recurso");
@@ -375,9 +375,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         jLabel25.setText("0");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        ConsolePrediccion.setColumns(20);
+        ConsolePrediccion.setRows(5);
+        jScrollPane2.setViewportView(ConsolePrediccion);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -478,9 +478,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         TiempoDeteccion.setText("0");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
+        ConsoleDeteccion.setColumns(20);
+        ConsoleDeteccion.setRows(5);
+        jScrollPane3.setViewportView(ConsoleDeteccion);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -735,6 +735,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton AgregarAProceso;
     private javax.swing.JTextField CMaxProceso;
     private javax.swing.JComboBox ComboBoxTipoRecursos;
+    private javax.swing.JTextArea ConsoleDeteccion;
+    private javax.swing.JTextArea ConsolePrediccion;
     private javax.swing.JButton CrearProceso;
     private javax.swing.JComboBox ListaProcesos;
     private javax.swing.JList ListaRecursosAsignados;
@@ -788,8 +790,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel nBloqDet;
     private javax.swing.JLabel nSD;
     private javax.swing.JLabel totBloqDet;
