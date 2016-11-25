@@ -3,15 +3,17 @@ package Logica;
 
 public class Predicción {
     
-    private int necesarios [][];
-    private int asignados [][];
-    private int maximos [][];
-    private Recurso recursos [];
-    private int disponibles [];
+    private int necesarios [][];     // Matriz resta entre maximos y asignados  
+    private int asignados [][];      // Matriz que posee los recursos asignados em cierto momento
+    private int maximos [][];        // Matriz que posee la cantidad maxima de recursos de cada Proceso
+    private Recurso recursos [];         // Vector que posee los recursos maximos del sistema 
+    private int disponibles [];      // Vector que posee los recursos disponibles por asignar 
+    private int finalizados [];      // Vector que indica si el proceso hs finalizado o no
     private int CantProcesos;
     private int CantRecursos;
     private int posi = 0;
     private int posj;
+    
     
     // Getters and Setters
     public int[][] getNecesarios() {
@@ -83,54 +85,148 @@ public class Predicción {
     public Predicción(Recurso[] recursos) {
         this.recursos = recursos;
     }
+
+    public Predicción(int[][] necesarios, int[][] asignados, int[][] maximos, Recurso[] recursos, int[] disponibles, int[] finalizados, int CantProcesos, int CantRecursos) {
+        this.necesarios = necesarios;
+        this.asignados = asignados;
+        this.maximos = maximos;
+        this.recursos = recursos;
+        this.disponibles = disponibles;
+        this.finalizados = finalizados;
+        this.CantProcesos = CantProcesos;
+        this.CantRecursos = CantRecursos;
+    }
     
     
     
-    //Metodos
-    private void insertarProceso (int maxRecursosPerProceso[], int vectorDeRecursos[] ) {
+    
+    // ----------------------------- METODOS -----------------------------
+    
+    //Metodo que Inserta cada proceso en las matrices Maximos y Asignados 
+    private void insertarProceso (int [] maxRecursosPerProceso, int [] vectorDeRecursos, int idProceso ) {
     
         for (int j = 0; j < vectorDeRecursos.length; j++) {
-            asignados[posi][j]=0;
+            asignados[idProceso][j]=0;
         }
 
         for (int j = 0; j < maxRecursosPerProceso.length; j++) {
-            maximos[posi][j]=maxRecursosPerProceso[j];
+            maximos[idProceso][j]=maxRecursosPerProceso[j];
+        } 
+    }
+    
+    // Metodo que finaliza el proceso
+    private void finalizarProceso (int idProceso)
+    {
+        boolean procesoFinalizo = true;
+        
+        for (int i = 0; i < asignados[idProceso][i]; i++) {
+            if (asignados[idProceso][i] != maximos[idProceso][i]) {
+                procesoFinalizo = false;
+            }
         }
         
-        posi++;
-    
+        if (procesoFinalizo == true) {
+            for (int i = 0; i < asignados[idProceso][i]; i++) {
+                asignados[idProceso][i] = 0;
+                maximos[idProceso][i] = 0;
+            }
+            
+            finalizados[idProceso]= 1;
+        }
     }
     
-    private void asignar (int [] a1){
+    // Metodo que comprueba si un proceso ha finalizado
+    private boolean comprobarFinalizado (int idProceso) {
+        if (finalizados[idProceso]!=0) {
+            return true;
+        }
+        else
+            return false;
+    }
     
+    //Metodo que Asigna los recursos a cada proceso
+    private boolean asignar (int idProceso, int [] solicitud ){
+        
+        boolean desbloquea = true;
+        boolean bloqueado = false;
+        
+        for (int i = 0; i < bloqueados[idProceso].lenght; i++) {
+            if (bloqueados[idProceso][i] != solicitud[i]) {
+                desbloquea = false;
+            }
+            
+            if (bloqueados[idProceso][i] != 0) {
+                bloqueado = true;
+            }
+        }
+        
+        if (desbloquea == true) {
+            desbloquearProceso (idProceso);
+            return true;
+        }
+        else if (bloqueado == false) {
+            
+            boolean conceder = true;
+            
+            for (int i = 0; i < recursos.length; i++) {
+                if (solicitud[i]>recursos[i]) {
+                    conceder = false;
+                }
+            }
+            
+            if (conceder == true) {
+                
+                for (int i = 0; i <recursos.length; i++) {
+                    asignados[idProceso][i] = asignados[idProceso][i] + solicitud[i];
+                }
+                
+            }
+            
+        }
+        
         for (int i = 0; i <recursos.length; i++) {
-            asignados[posi][i]=a1[i];
+            if ( solicitud[i] > maximos[posi][i] )
+            {
+                bloquear();
+            }
+        }
+        
+        for (int j = 0; j <recursos.length; j++) {
+            asignados[idProceso][j]= asignados[idProceso][j] + solicitud[j];
+        }
+        
+        for (int j = 0; j <recursos.length; j++) {
+            recursos[j]= recursos[j]-asignados[posi][j];
         }
     
     }
     
+    // Metodo que Inicializa las matrices
     private void entrada() {
          
-        necesarios = new int[CantProcesos][CantRecursos];  //inicializacion de arrays
+        necesarios = new int[CantProcesos][CantRecursos];  
         maximos = new int[CantProcesos][CantRecursos];
         asignados = new int[CantProcesos][CantRecursos];
-        disponibles = new int [CantRecursos];
+        disponibles = new int[CantRecursos];
         
     }
     
+    // Metodo que calcula la matriz Necesidad
     private int[][] calculoNecesarios() {
+        
         for (int i = 0; i < CantProcesos; i++) {
-            for (int j = 0; j < CantRecursos; j++) //calculando matriz de necesarios
+            for (int j = 0; j < CantRecursos; j++) 
             {
-                 necesarios[i][j] = maximos[i][j] - asignados[i][j];
+                necesarios[i][j] = maximos[i][j] - asignados[i][j];
             }
         }
  
         return necesarios;
     }
  
+    // Metodo que chequea si todos los recursos para el proceso pueden ser asignados
     private boolean chequear(int i) {
-         //chequeando si todos los recursos para el proceso pueden ser asignados
+        
         for (int j = 0; j < CantRecursos; j++) {
             if (disponibles[j] < necesarios[i][j]) {
                 return false;
@@ -140,6 +236,7 @@ public class Predicción {
         return true;
     }
  
+    // Metodo Es Seguro 
     public void esSeguro() {
         
         entrada();
