@@ -40,7 +40,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         this.VectorDeProceso = VectorDeProceso;
         this.VectorDeRecurso = VectorDeRecurso;
         this.Prediccion = new Predicción (VectorDeRecurso);
-        this.Deteccion = new Detección ();
+        this.Deteccion = new Detección (VectorDeRecurso);
         modelo = new DefaultListModel();
         ListaRecursosAsignados.setModel(modelo);
         llenarComboBoxRecursos();
@@ -285,6 +285,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         Solicitar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SolicitarMouseClicked(evt);
+            }
+        });
+        Solicitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SolicitarActionPerformed(evt);
             }
         });
 
@@ -672,6 +677,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
  
         
     }//GEN-LAST:event_SolicitarMouseClicked
+
+    private void SolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SolicitarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SolicitarActionPerformed
 
     /**
      * @param args the command line arguments

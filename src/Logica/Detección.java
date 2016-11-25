@@ -15,6 +15,9 @@ public class Detección {
     private int CantProcesos;
     private int CantRecursos;
     private long tiempo;
+    private Recurso recursos [];
+
+   
 
     //Getters and Setters
     
@@ -129,6 +132,10 @@ public class Detección {
         this.CantProcesos = CantProcesos;
         this.CantRecursos = CantRecursos;
         this.tiempo = tiempo;
+    }
+    
+    public Detección(Recurso[] recursos) {
+        this.recursos = recursos;
     }
     
     // ----------------------------- METODOS -----------------------------
