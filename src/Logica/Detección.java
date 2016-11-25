@@ -383,21 +383,29 @@ public class Detección {
     
     // Metodo que ejecuta el algoritmo 
     private void ejecutar(int idProcesos, int[] solicitud){
-        long startTime = System.nanoTime();
-        boolean finalizo=comprobarFinalizado(idProcesos);
-        boolean eliminado=comprobarEliminado(idProcesos);
-        if(!finalizo && !eliminado){
-            boolean logrado;
+       
+        long tiempo = System.nanoTime();
+        boolean finalizo = comprobarFinalizado(idProcesos);
+        boolean eliminado = comprobarEliminado(idProcesos);
+        
+        if( finalizo == false && eliminado == false)
+        {
+            boolean x;
             asignar(idProcesos, solicitud);
-            logrado=detectar();
-            if(logrado)
-                finalizarProceso(idProcesos);    
+            x = detectar();
+            
+            if(x)
+            {
+               finalizarProceso(idProcesos);    
+            }
         }
+        
         for (int i = 0; i < marcados.length; i++) {
-           marcados[i]=false;
-       }
+           marcados[i] = false;
+        }
+        
         long finishTime = System.nanoTime();
-        tiempo=(finishTime-startTime)/1000000;
+        tiempo = (finishTime - tiempo)/1000000;
         
     }
     

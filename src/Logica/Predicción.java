@@ -123,7 +123,7 @@ public class Predicción {
     
     // Metodo que comprueba si un proceso ha finalizado
     public boolean comprobarFinalizado (int idProceso) {
-        if (finalizados[idProceso]!=0) {
+        if (finalizados[idProceso] != 0) {
             return true;
         }
         else
@@ -155,7 +155,7 @@ public class Predicción {
             boolean conceder = true;
             
             for (int i = 0; i < recursos.length; i++) {
-                if (solicitud[i]>recursos[i].getCantRecurso()) {
+                if (solicitud[i] > recursos[i].getCantRecurso()) {
                     conceder = false;
                 }
             }
@@ -194,7 +194,7 @@ public class Predicción {
     // Metodo que desbloquea a un proceso
     public void desbloquearProceso (int idProceso) {
     
-        for (int i = 0; i <bloqueados[idProceso].length; i++) {
+        for (int i = 0; i < bloqueados[idProceso].length; i++) {
             asignados[idProceso][i] = asignados[idProceso][i] + bloqueados[idProceso][i];
             bloqueados [idProceso][i] = 0;
         }
@@ -290,7 +290,7 @@ public class Predicción {
                 System.out.println("SE NEGO LA SOLICITUD");
         }
         long finishTime = System.nanoTime();
-        tiempo=(finishTime-tiempo)/1000000;
+        tiempo = (finishTime-tiempo)/1000000;
         
     }
 }
