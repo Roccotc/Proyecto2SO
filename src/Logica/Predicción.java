@@ -75,17 +75,17 @@ public class Predicción {
     //Constructores
     
 
-    public Predicción(int CantProcesos, int CantRecursos, int [] recursos, int [] disponibles) {
+    public Predicción(int CantProcesos, int CantRecursos, Recurso [] disponibles) {
   
         this.CantProcesos = CantProcesos;
         this.CantRecursos = CantRecursos;
        
         for (int i = 0; i < 150; i++) {
-            recursos[i] = recursos[i];
+            recursos[i].setCantRecurso(disponibles[i].getCantRecurso());
         }
         
          for (int i = 0; i < 150; i++) {
-            disponibles[i]=disponibles[i];
+            disponibles[i].setCantRecurso(disponibles[i].getCantRecurso());
         }
         
     }
