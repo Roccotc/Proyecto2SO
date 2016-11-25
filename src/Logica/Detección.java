@@ -18,11 +18,17 @@ public class Detección {
     private int pFin = 0;
     private int pEli = 0;
     private int bloqActual=0;
-    private long tiempo;
+    private long tiempo = 0;
+    private int ProcesosBloqueadosT = 0;
+    private int ProcesosFinalizados = 0;
+    private int SolicitudesRealizadas = 0;
+    private int ProcesosSistema = 0;
+    private int ProcesosEliminados = 0;
+    private int ProcesosT = 0;
     
 
    
-    //Getters and Setters
+    // ------------------------- GET & SET -------------------------
     
     public int[][] getAsignacion() {
         return asignacion;
@@ -143,11 +149,60 @@ public class Detección {
     public void setBloqActual(int bloqActual) {
         this.bloqActual = bloqActual;
     }
+
+    public int getProcesosBloqueadosT() {
+        return ProcesosBloqueadosT;
+    }
+
+    public void setProcesosBloqueadosT(int ProcesosBloqueadosT) {
+        this.ProcesosBloqueadosT = ProcesosBloqueadosT;
+    }
+
+    public int getProcesosFinalizados() {
+        return ProcesosFinalizados;
+    }
+
+    public void setProcesosFinalizados(int ProcesosFinalizados) {
+        this.ProcesosFinalizados = ProcesosFinalizados;
+    }
+
+    public int getSolicitudesRealizadas() {
+        return SolicitudesRealizadas;
+    }
+
+    public void setSolicitudesRealizadas(int SolicitudesRealizadas) {
+        this.SolicitudesRealizadas = SolicitudesRealizadas;
+    }
+
+    public int getProcesosSistema() {
+        return ProcesosSistema;
+    }
+
+    public void setProcesosSistema(int ProcesosSistema) {
+        this.ProcesosSistema = ProcesosSistema;
+    }
+
+    public int getProcesosEliminados() {
+        return ProcesosEliminados;
+    }
+
+    public void setProcesosEliminados(int ProcesosEliminados) {
+        this.ProcesosEliminados = ProcesosEliminados;
+    }
+
+    public int getProcesosT() {
+        return ProcesosT;
+    }
+
+    public void setProcesosT(int ProcesosT) {
+        this.ProcesosT = ProcesosT;
+    }
     
     
     
     
-    // Constructor
+    // --------------------------- CONSTRUCTOR ---------------------------
+    
     public Detección(Recurso [] x) {
         
         this.CantRecursos = x.length;
@@ -226,10 +281,11 @@ public class Detección {
         }
         
         marcados[idProceso]=false;
+                
+        ProcesosSistema++;
+        ProcesosT++;
     }
-    
-   
-    
+  
     // Metodo que finaliza el proceso
     public void finalizarProceso (int idProceso)
     {
@@ -250,9 +306,9 @@ public class Detección {
             
             finalizados[idProceso]= 1;
             pFin++;
+            ProcesosSistema++;
         }
     }
-    
     // Metodo que comprueba si un proceso ha finalizado
     public boolean comprobarFinalizado (int idProceso) {
         if (finalizados[idProceso]!=0) {
@@ -290,7 +346,7 @@ public class Detección {
         {
             boolean conceder = true;
             
-            for (int i = 0; i < disponible[i]; i++) {
+            for (int i = 0; i < disponible.length; i++) {
                 
                 if (solicitud[i] > disponible[i]) 
                 {
@@ -300,7 +356,7 @@ public class Detección {
             
             if (conceder == true) {
                 
-                for (int i = 0; i <disponible[i]; i++) 
+                for (int i = 0; i <disponible.length; i++) 
                 {
                     asignacion[idProceso][i] = asignacion[idProceso][i] + solicitud[i];
                     disponible[i]=disponible[i] - solicitud[i];
@@ -335,6 +391,8 @@ public class Detección {
             bloqueados[idProceso][i] = solicitud[i];
             
         }
+        bloqActual++;
+        ProcesosBloqueadosT++;
     }
     
     // Metodo que calcula la matriz Necesidad
@@ -352,14 +410,6 @@ public class Detección {
     // Metodo que Inicializa las matrices
     public void entrada() {
          
-        necesarios = new int[CantProcesos][CantRecursos];  
-        maximos = new int[CantProcesos][CantRecursos];
-        asignacion = new int[CantProcesos][CantRecursos];
-        disponible = new int[CantRecursos];
-        bloqueados = new int [CantProcesos][CantRecursos];
-        finalizados = new int [CantProcesos]; 
-        marcados = new boolean [CantProcesos];
-        vectorAuxiliar = new int [CantProcesos];
     }
     
     // Metodo de deteccion
@@ -381,7 +431,7 @@ public class Detección {
                 }
             }
             
-            if(marcar)
+            if(marcar == true)
             {
                 marcados[i] = true;
             }
@@ -401,19 +451,20 @@ public class Detección {
             
             for(int i = 0; i <asignacion.length; i++) {
                 
-                boolean verificar = true;
+                boolean comprob = true;
                
-                if(marcados[i] == false){
-                    
+                if(marcados[i] == false)
+                {         
                     for (int j = 0; j < asignacion[i].length; j++) {
                         
                         if(necesarios[i][j] > vectorAuxiliar[j])
                         {
-                           verificar = false;
+                           comprob = false;
                         }
                     }
-                    if(verificar == true){
-                        
+                    
+                    if(comprob == true)
+                    {  
                         proceder = true;
                         
                         for (int j = 0; j < asignacion[i].length; j++) {
@@ -432,6 +483,8 @@ public class Detección {
             if(marcados[i] == false){
                 
                 eliminarProceso(i);
+                ProcesosEliminados++;
+                ProcesosT--;
                 exito = false;
             }
         }
@@ -478,7 +531,7 @@ public class Detección {
             asignar(idProcesos, solicitud);
             x = detectar();
             
-            if(x)
+            if(x == true)
             {
                finalizarProceso(idProcesos);    
             }
