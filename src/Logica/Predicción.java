@@ -368,7 +368,7 @@ public class Predicción {
         
         System.out.println(CantProcesos);
         
-        long tiempo = System.nanoTime();
+        long tiempoAux = System.nanoTime();
         boolean end = comprobarFinalizado(idProceso);
         if( end == false){
             boolean valido = asignar(idProceso, solicitud);
@@ -386,7 +386,7 @@ public class Predicción {
                  ConsolePrediccion.append("Solicitud Negada \n");
         }
         long finishTime = System.nanoTime();
-        tiempo = (finishTime-tiempo)/1000000;
+        tiempo = (finishTime-tiempoAux)/1000000;
         
     }
     
@@ -410,7 +410,7 @@ public class Predicción {
             
             finalizados[idProceso]= 1;
             ProcesosFinalizados++;
-            ConsolePrediccion.append("Proceso Numero: "+idProceso+"  finalizo exitosamente \n");
+            ConsolePrediccion.append("Proceso Numero: "+idProceso+" finalizo exitosamente \n");
         }
     }
     

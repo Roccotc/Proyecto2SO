@@ -685,7 +685,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabel22.setText(Integer.toString(Prediccion.getProcesosBloqueados()));
         jLabel23.setText(Integer.toString(Prediccion.getProcesosBloqueadosT()));
         jLabel24.setText(Integer.toString(Prediccion.getProcesosFinalizados()));
-        jLabel25.setText(Long.toString(Prediccion.getTiempo()));
+        jLabel25.setText(Long.toString(Prediccion.getTiempo())+"ms");
         NombreRecurso2.setText("");
         
  
