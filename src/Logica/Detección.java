@@ -1,6 +1,8 @@
 
 package Logica;
 
+import javax.swing.JTextArea;
+
 public class Detección {
     
     private int necesarios [][] = new int[150][150];      
@@ -25,6 +27,7 @@ public class Detección {
     private int ProcesosSistema = 0;
     private int ProcesosEliminados = 0;
     private int ProcesosT = 0;
+    public JTextArea ConsoleDeteccion;
     
 
    
@@ -203,9 +206,10 @@ public class Detección {
     
     // --------------------------- CONSTRUCTOR ---------------------------
     
-    public Detección(Recurso [] x) {
+    public Detección(Recurso [] x, JTextArea ConsoleDeteccion) {
         
         this.CantRecursos = x.length;
+        this.ConsoleDeteccion = ConsoleDeteccion;
         
         for (int i = 0; i < 150; i++) {
             for (int j = 0; j < 150; j++) {
@@ -272,6 +276,10 @@ public class Detección {
     
     // ----------------------------- METODOS -----------------------------
 
+    // Metodo que Inicializa las matrices
+    public void entrada() {
+         
+    }
     
     //Metodo que Inserta cada proceso en las matrices Maximos y Asignados 
     public void insertarProceso (int [] maxRecursosPerProceso, int idProceso ) {
@@ -284,38 +292,6 @@ public class Detección {
                 
         ProcesosSistema++;
         ProcesosT++;
-    }
-  
-    // Metodo que finaliza el proceso
-    public void finalizarProceso (int idProceso)
-    {
-        boolean procesoFinalizo = true;
-        
-        for (int i = 0; i < asignacion[idProceso].length; i++) {
-            if (asignacion[idProceso][i] != maximos[idProceso][i]) {
-                procesoFinalizo = false;
-            }
-        }
-        
-        if (procesoFinalizo == true) {
-            for (int i = 0; i < asignacion[idProceso][i]; i++) {
-                disponible[i] = asignacion[idProceso][i];
-                asignacion[idProceso][i] = 0;
-                maximos[idProceso][i] = 0;
-            }
-            
-            finalizados[idProceso]= 1;
-            pFin++;
-            ProcesosSistema++;
-        }
-    }
-    // Metodo que comprueba si un proceso ha finalizado
-    public boolean comprobarFinalizado (int idProceso) {
-        if (finalizados[idProceso]!=0) {
-            return true;
-        }
-        else
-            return false;
     }
     
     //Metodo que Asigna los recursos a cada proceso
@@ -374,16 +350,6 @@ public class Detección {
         }
     }
     
-    // Metodo que desbloquea a un proceso
-    public void desbloquearProceso (int idProceso) {
-    
-        for (int i = 0; i <bloqueados[idProceso].length; i++) {
-            asignacion[idProceso][i] = asignacion[idProceso][i] + bloqueados[idProceso][i];
-            bloqueados [idProceso][i] = 0;
-        }
-        bloqActual--;
-    }
-    
     // Metodo que bloquea a un proceso
     public void bloquearProceso (int idProceso, int [] solicitud) {
     
@@ -393,6 +359,18 @@ public class Detección {
         }
         bloqActual++;
         ProcesosBloqueadosT++;
+        ConsoleDeteccion.append("Se Bloqueo el proceso "+idProceso+" \n");
+    }
+    
+    // Metodo que desbloquea a un proceso
+    public void desbloquearProceso (int idProceso) {
+    
+        for (int i = 0; i <bloqueados[idProceso].length; i++) {
+            asignacion[idProceso][i] = asignacion[idProceso][i] + bloqueados[idProceso][i];
+            bloqueados [idProceso][i] = 0;
+        }
+        bloqActual--;
+        ConsoleDeteccion.append("Se Desbloqueo el proceso "+idProceso+" \n");
     }
     
     // Metodo que calcula la matriz Necesidad
@@ -405,11 +383,6 @@ public class Detección {
             }
         }
  
-    }
-    
-    // Metodo que Inicializa las matrices
-    public void entrada() {
-         
     }
     
     // Metodo de deteccion
@@ -491,33 +464,6 @@ public class Detección {
         return exito;
     }
     
-    // Metodo que elimina un proceso
-    private void eliminarProceso(int idProcesos){
-         
-        for (int i = 0; i < asignacion[idProcesos][i]; i++) {
-            
-            disponible[i]= disponible[i] + asignacion[idProcesos][i];
-            asignacion[idProcesos][i] = 0;
-            maximos[idProcesos][i] = 0;
-        }
-        
-        eliminados[idProcesos] = 1;
-    }
-    
-    // Metodo que comprueba si hay proceso eliminado
-    private boolean comprobarEliminado(int idProcesos){
-        
-        if(eliminados[idProcesos] != 0)
-        {
-           return true;
-        }
-        else
-        {
-           return false;
-        }
-        
-    }
-    
     // Metodo que ejecuta el algoritmo 
     private void ejecutar(int idProcesos, int[] solicitud){
        
@@ -545,6 +491,69 @@ public class Detección {
         tiempo = (finishTime - tiempo)/1000000;
         
     }
+    
+    // Metodo que finaliza el proceso
+    public void finalizarProceso (int idProceso)
+    {
+        boolean procesoFinalizo = true;
+        
+        for (int i = 0; i < asignacion[idProceso].length; i++) {
+            if (asignacion[idProceso][i] != maximos[idProceso][i]) {
+                procesoFinalizo = false;
+            }
+        }
+        
+        if (procesoFinalizo == true) {
+            for (int i = 0; i < asignacion[idProceso][i]; i++) {
+                disponible[i] = asignacion[idProceso][i];
+                asignacion[idProceso][i] = 0;
+                maximos[idProceso][i] = 0;
+            }
+            
+            finalizados[idProceso]= 1;
+            pFin++;
+            ProcesosSistema++;
+        }
+    }
+    // Metodo que comprueba si un proceso ha finalizado
+    public boolean comprobarFinalizado (int idProceso) {
+        if (finalizados[idProceso]!=0) {
+            return true;
+        }
+        else
+            return false;
+    }
+    
+    // Metodo que elimina un proceso
+    private void eliminarProceso(int idProceso){
+         
+        for (int i = 0; i < asignacion[idProceso][i]; i++) {
+            
+            disponible[i]= disponible[i] + asignacion[idProceso][i];
+            asignacion[idProceso][i] = 0;
+            maximos[idProceso][i] = 0;
+        }
+        
+        eliminados[idProceso] = 1;
+        ProcesosEliminados++;
+        ConsoleDeteccion.append("Se elimino el proceso "+idProceso+" \n");
+    }
+    
+    // Metodo que comprueba si hay proceso eliminado
+    private boolean comprobarEliminado(int idProcesos){
+        
+        if(eliminados[idProcesos] != 0)
+        {
+           return true;
+        }
+        else
+        {
+           return false;
+        }
+        
+    }
+    
+    
     
     
 }
