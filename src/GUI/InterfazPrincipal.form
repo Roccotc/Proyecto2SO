@@ -380,7 +380,7 @@
                       <Component id="jLabel22" alignment="1" max="32767" attributes="0"/>
                       <Component id="jLabel21" alignment="1" max="32767" attributes="0"/>
                       <Component id="jLabel20" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel19" alignment="1" max="32767" attributes="0"/>
+                      <Component id="NPCreadosP" alignment="1" max="32767" attributes="0"/>
                       <Component id="jLabel25" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -398,7 +398,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel11" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jLabel19" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="NPCreadosP" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -485,7 +485,7 @@
             <Property name="text" type="java.lang.String" value="Tiempo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel19">
+        <Component class="javax.swing.JLabel" name="NPCreadosP">
           <Properties>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
@@ -560,13 +560,13 @@
                   </Group>
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel38" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel37" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel36" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel35" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel34" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel33" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel39" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="TotEliminados" alignment="1" max="32767" attributes="0"/>
+                      <Component id="totBloqDet" alignment="1" max="32767" attributes="0"/>
+                      <Component id="nBloqDet" alignment="1" max="32767" attributes="0"/>
+                      <Component id="nSD" alignment="1" max="32767" attributes="0"/>
+                      <Component id="NpSistemaDet" alignment="1" max="32767" attributes="0"/>
+                      <Component id="NPCreadosDet" alignment="1" max="32767" attributes="0"/>
+                      <Component id="TiempoDeteccion" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
@@ -583,37 +583,37 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel26" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jLabel33" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="NPCreadosDet" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel28" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jLabel34" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="NpSistemaDet" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel27" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jLabel35" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="nSD" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel30" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jLabel36" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="nBloqDet" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel29" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jLabel37" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="totBloqDet" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel31" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jLabel38" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="TotEliminados" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel32" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jLabel39" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="TiempoDeteccion" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jScrollPane3" max="32767" attributes="0"/>
@@ -670,37 +670,37 @@
             <Property name="text" type="java.lang.String" value="Tiempo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel33">
+        <Component class="javax.swing.JLabel" name="NPCreadosDet">
           <Properties>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel34">
+        <Component class="javax.swing.JLabel" name="NpSistemaDet">
           <Properties>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel35">
+        <Component class="javax.swing.JLabel" name="nSD">
           <Properties>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel36">
+        <Component class="javax.swing.JLabel" name="nBloqDet">
           <Properties>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel37">
+        <Component class="javax.swing.JLabel" name="totBloqDet">
           <Properties>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel38">
+        <Component class="javax.swing.JLabel" name="TotEliminados">
           <Properties>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel39">
+        <Component class="javax.swing.JLabel" name="TiempoDeteccion">
           <Properties>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
