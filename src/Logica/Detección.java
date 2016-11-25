@@ -3,25 +3,25 @@ package Logica;
 
 public class Detección {
     
-    private int asignacion [][];
-    private int necesarios [][];
-    private int maximos [][];
-    private int bloqueados [][];
-    private int vectorAuxiliar [];
-    private int disponible [];
-    private boolean marcados[];
-    private int finalizados[];
-    private int eliminados [];
+    private int necesarios [][] = new int[150][150];      
+    private int asignacion [][] = new int[150][150];     
+    private int maximos [][] = new int[150][150];        
+    private int bloqueados[][] = new int[150][150];      
+    private int vectorAuxiliar [] = new int[150];
+    private int disponible [] = new int[150];
+    private int recursos [] = new int[150]; 
+    private boolean marcados[] = new boolean[150];
+    private int finalizados[] = new int[150];
+    private int eliminados [] = new int[150];
     private int CantProcesos;
     private int CantRecursos;
     private int pFin = 0;
     private int pEli = 0;
     private int bloqActual=0;
     private long tiempo;
-    private Recurso recursos [];
+    
 
    
-
     //Getters and Setters
     
     public int[][] getAsignacion() {
@@ -120,40 +120,86 @@ public class Detección {
         this.tiempo = tiempo;
     }
     
+    
     // Constructor
+    public Detección(Recurso [] x) {
+        
+        this.CantRecursos = x.length;
+        
+        for (int i = 0; i < 150; i++) {
+            for (int j = 0; j < 150; j++) {
+                asignacion[i][j]=0;
+            }
+        }
+
+        
+        for (int i = 0; i < 150; i++) 
+        {
+            disponible[i]=x[i].getCantRecurso();
+        }
+        
+        
+        for (int i = 0; i < 150; i++) 
+        {
+            for (int j = 0; j < 150; j++) 
+            {
+                necesarios[i][j]=0;
+            }
+        }
+        
+        
+        for (int i = 0; i < 150; i++) 
+        {
+            vectorAuxiliar[i]=0;    
+        }
+        
+        
+        for (int i = 0; i < 150; i++) 
+        {
+            marcados[i]=false;    
+        }
+        
+        
+        for (int i = 0; i < 150; i++) {
+            for (int j = 0; j < 150; j++) {
+                maximos[i][j]=0;
+            }
+        }
     
-    public Detección(int[][] asignacion, int[][] necesarios, int[][] maximos, int[][] bloqueados, int[] vectorAuxiliar, int[] disponible, boolean[] marcados, int[] finalizados, int[] eliminados, int CantProcesos, int CantRecursos, long tiempo) {
-        this.asignacion = asignacion;
-        this.necesarios = necesarios;
-        this.maximos = maximos;
-        this.bloqueados = bloqueados;
-        this.vectorAuxiliar = vectorAuxiliar;
-        this.disponible = disponible;
-        this.marcados = marcados;
-        this.finalizados = finalizados;
-        this.eliminados = eliminados;
-        this.CantProcesos = CantProcesos;
-        this.CantRecursos = CantRecursos;
-        this.tiempo = tiempo;
+ 
+        for (int i = 0; i < 150; i++) 
+        {
+            eliminados[i]=0;           
+        }
+        
+        
+        for (int i = 0; i < 150; i++)
+        {
+            finalizados[i]=0;           
+        }
+        
+        
+        for (int i = 0; i < 150; i++) 
+        {
+            for (int j = 0; j < 150; j++) 
+            {
+                bloqueados[i][j]=0;
+            }
+        }
     }
     
-    public Detección(Recurso[] recursos) {
-        this.recursos = recursos;
-    }
+    
+  
     
     // ----------------------------- METODOS -----------------------------
 
     
     //Metodo que Inserta cada proceso en las matrices Maximos y Asignados 
-    public void insertarProceso (int [] maxRecursosPerProceso, int [] vectorDeRecursos, int idProceso ) {
+    public void insertarProceso (int [] maxRecursosPerProceso, int idProceso ) {
     
-        for (int j = 0; j < vectorDeRecursos.length; j++) {
-            asignacion[idProceso][j]=0;
-        }
-
-        for (int j = 0; j < maxRecursosPerProceso.length; j++) {
+        for (int j = 0; j < maximos.length; j++) {
             maximos[idProceso][j]=maxRecursosPerProceso[j];
-        } 
+        }
         
         marcados[idProceso]=false;
     }
@@ -216,7 +262,6 @@ public class Detección {
         }
         else if (bloqueado == false) 
         {
-            
             boolean conceder = true;
             
             for (int i = 0; i < disponible[i]; i++) {
@@ -262,21 +307,20 @@ public class Detección {
     
         for (int i = 0; i <solicitud.length; i++) {
             bloqueados[idProceso][i] = solicitud[i];
-            asignacion[idProceso][i] = asignacion[idProceso][i] - solicitud[i];
+            
         }
     }
     
     // Metodo que calcula la matriz Necesidad
-    public int[][] calculoNecesarios() {
+    public void calculoNecesarios() {
         
-        for (int i = 0; i < CantProcesos; i++) {
-            for (int j = 0; j < CantRecursos; j++) 
+        for (int i = 0; i < asignacion.length; i++) {
+            for (int j = 0; j < disponible.length; j++) 
             {
                 necesarios[i][j] = maximos[i][j] - asignacion[i][j];
             }
         }
  
-        return necesarios;
     }
     
     // Metodo que Inicializa las matrices

@@ -7,9 +7,9 @@ public class Predicción {
     private int asignados [][] = new int[150][150];      // Matriz que posee los recursos asignados em cierto momento
     private int maximos [][] = new int[150][150];        // Matriz que posee la cantidad maxima de recursos de cada Proceso
     private int bloqueados[][] = new int[150][150];      // Matriz que posee los procesos bloqueados
-    private int recursos [] = new int[150];     // Vector que posee los recursos maximos del sistema 
-    private int disponibles [] = new int[150];      // Vector que posee los recursos disponibles por asignar 
-    private int finalizados [] = new int[150];      // Vector que indica si el proceso hs finalizado o no
+    private int recursos [] = new int[150];              // Vector que posee los recursos maximos del sistema 
+    private int disponibles [] = new int[150];           // Vector que posee los recursos disponibles por asignar 
+    private int finalizados [] = new int[150];           // Vector que indica si el proceso hs finalizado o no
     private int auxiliar [] = new int[150];
     private int CantProcesos;
     private int CantRecursos;
