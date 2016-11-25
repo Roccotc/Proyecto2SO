@@ -6,7 +6,7 @@ public class Predicción {
     private int necesarios [][];
     private int asignados [][];
     private int maximos [][];
-    private int recursos [];
+    private Recurso recursos [];
     private int disponibles [];
     private int CantProcesos;
     private int CantRecursos;
@@ -80,7 +80,7 @@ public class Predicción {
     
     
     //Constructores
-    public Predicción(int[] recursos) {
+    public Predicción(Recurso[] recursos) {
         this.recursos = recursos;
     }
     

@@ -7,7 +7,11 @@ package GUI;
 
 import Logica.Proceso;
 import Logica.Recurso;
+import Logica.Predicción;
+import Logica.Detección;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -25,6 +29,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private Recurso VectorDeRecurso [];
     private int idRecurso;
     
+    public Predicción Prediccion;
+    public Detección Deteccion;
+    
     public InterfazPrincipal(Proceso[] VectorDeProceso, Recurso[] VectorDeRecurso ) {
         initComponents();
         this.getContentPane().setBackground(Color.lightGray);
@@ -32,15 +39,40 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         setResizable(false);
         this.VectorDeProceso = VectorDeProceso;
         this.VectorDeRecurso = VectorDeRecurso;
+        this.Prediccion = new Predicción (VectorDeRecurso);
         modelo = new DefaultListModel();
         ListaRecursosAsignados.setModel(modelo);
         llenarComboBoxRecursos();
+        llenarComboBoxRecursoDelProceso ();
+        icializarMaxCantRecursosPerProcess();
     }
 
     private InterfazPrincipal() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 
+    
+    private void icializarMaxCantRecursosPerProcess () {
+    for (int i = 0; i < MaxCantRecursosPerProcess.length ; i++) {
+                MaxCantRecursosPerProcess[i]=0;
+            }
+    
+
+    
+    }
+    
+    private void llenarComboBoxRecursoDelProceso(){
+            for (int i = 0; i < VectorDeRecurso.length; i++) {
+            //ComboBoxTipoRecursos.addItem(VectorDeRecurso[i].getNombre());
+            if (VectorDeRecurso[i]!= null) {
+                RecursoDelProceso.addItem(VectorDeRecurso[i].getNombre());
+            } 
+           
+            
+        }
+    }
+    
     private void llenarComboBoxRecursos()
     {
         for (int i = 0; i < VectorDeRecurso.length; i++) {
@@ -249,6 +281,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         Solicitar.setBackground(new java.awt.Color(170, 199, 170));
         Solicitar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Solicitar.setText("Solicitar");
+        Solicitar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SolicitarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -554,11 +591,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     private void CrearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearProcesoActionPerformed
         
-        if (!"".equals(NombreProceso.getText())) {
+        if (!"".equals(NombreProceso.getText())) 
+        {
+            
             Proceso p = new Proceso (IDProceso, NombreProceso.getText(), MaxCantRecursosPerProcess);
             VectorDeProceso [IDProceso] = p;
-             IDProceso++;
-        
+            IDProceso++;
+             
             for (int i = 0; i < MaxCantRecursosPerProcess.length ; i++) {
                 MaxCantRecursosPerProcess[i]=0;
             }
@@ -598,6 +637,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_AgregarAProcesoMouseClicked
+
+    private void SolicitarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SolicitarMouseClicked
+        NombreRecurso2.getText();
+        NombreRecurso2.setText("");
+ 
+        
+    }//GEN-LAST:event_SolicitarMouseClicked
 
     /**
      * @param args the command line arguments
