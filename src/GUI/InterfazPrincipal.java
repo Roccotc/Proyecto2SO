@@ -639,7 +639,26 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_AgregarAProcesoMouseClicked
 
     private void SolicitarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SolicitarMouseClicked
-        NombreRecurso2.getText();
+        
+        if (VectorDeProceso[ListaProcesos.getSelectedIndex()].getMaxCantRecursosPOSICION(RecursoDelProceso.getSelectedIndex())!=0) {
+            int CantidadSolicitada = Integer.parseInt(NombreRecurso2.getText());
+            if ( CantidadSolicitada  < VectorDeProceso[ListaProcesos.getSelectedIndex()].getMaxCantRecursosPOSICION(RecursoDelProceso.getSelectedIndex())) {
+                int AuxSolicitud [] = new int [150];
+                for (int i = 0; i < AuxSolicitud.length ; i++) {
+                    AuxSolicitud [i] = 0;
+                }
+                AuxSolicitud [RecursoDelProceso.getSelectedIndex()] = CantidadSolicitada;
+                Prediccion.ejecutar();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "ERROR: El recurso solicitado del proceso sobrepasa el max especificado! ");
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "ERROR: Este recurso no es usado por el proceso"+VectorDeProceso[ListaProcesos.getSelectedIndex()].getNombre());
+        }
+        
+        
         NombreRecurso2.setText("");
  
         
