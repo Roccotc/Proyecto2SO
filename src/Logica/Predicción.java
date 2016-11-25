@@ -3,14 +3,14 @@ package Logica;
 
 public class Predicción {
     
-    private int necesarios [][];     // Matriz resta entre maximos y asignados  
-    private int asignados [][];      // Matriz que posee los recursos asignados em cierto momento
-    private int maximos [][];        // Matriz que posee la cantidad maxima de recursos de cada Proceso
-    private int bloqueados[][];      // Matriz que posee los procesos bloqueados
-    private Recurso recursos [];     // Vector que posee los recursos maximos del sistema 
-    private int disponibles [];      // Vector que posee los recursos disponibles por asignar 
-    private int finalizados [];      // Vector que indica si el proceso hs finalizado o no
-    private int auxiliar [];
+    private int necesarios [][] = new int[150][150];     // Matriz resta entre maximos y asignados  
+    private int asignados [][] = new int[150][150];      // Matriz que posee los recursos asignados em cierto momento
+    private int maximos [][] = new int[150][150];        // Matriz que posee la cantidad maxima de recursos de cada Proceso
+    private int bloqueados[][] = new int[150][150];      // Matriz que posee los procesos bloqueados
+    private int recursos [] = new int[150];     // Vector que posee los recursos maximos del sistema 
+    private int disponibles [] = new int[150];      // Vector que posee los recursos disponibles por asignar 
+    private int finalizados [] = new int[150];      // Vector que indica si el proceso hs finalizado o no
+    private int auxiliar [] = new int[150];
     private int CantProcesos;
     private int CantRecursos;
     private long tiempo = 0;
@@ -75,38 +75,9 @@ public class Predicción {
     //Constructores
     
 
-    public Predicción(int CantProcesos, int CantRecursos, Recurso [] disponibles) {
-  
-        this.CantProcesos = CantProcesos;
-        this.CantRecursos = CantRecursos;
-       
-        for (int i = 0; i < 150; i++) {
-            recursos[i].setCantRecurso(disponibles[i].getCantRecurso());
-        }
-        
-         for (int i = 0; i < 150; i++) {
-            disponibles[i].setCantRecurso(disponibles[i].getCantRecurso());
-        }
-        
-    }
+    public Predicción(Recurso [] x) {
 
-    
-    
-    
-    
-    
-    // ----------------------------- METODOS -----------------------------
-    
-    // Metodo que Inicializa las matrices
-    public void entrada() {
-         
-        necesarios = new int[CantProcesos][CantRecursos];  
-        maximos = new int[CantProcesos][CantRecursos];
-        asignados = new int[CantProcesos][CantRecursos];
-        disponibles = new int[CantRecursos];
-        bloqueados = new int [CantProcesos][CantRecursos];
-        finalizados = new int [CantProcesos];
-        auxiliar = new int [150];
+        this.CantRecursos = x.length;
         
         for (int i = 0; i < 150; i++) {
             for (int j = 0; j < 150; j++) {
@@ -127,8 +98,35 @@ public class Predicción {
         }
         
         for (int i = 0; i < 150; i++) {   
-                finalizados[i]=0;    
+            finalizados[i]=0;    
         }
+        
+        for (int i = 0; i < 150; i++) {
+            recursos[i]=0;
+        }
+        
+        for (int i = 0; i < 150; i++) {
+            if (x[i]!=null) {
+                recursos[i] = x[i].getCantRecurso();
+            }
+            
+        }
+        
+         for (int i = 0; i < 150; i++) {
+            if (x[i]!=null) {
+                disponibles[i] = x[i].getCantRecurso();
+            }
+        }
+        
+    }
+
+    
+    // ----------------------------- METODOS -----------------------------
+    
+    // Metodo que Inicializa las matrices
+    public void entrada() {
+         
+        
         
     }
     

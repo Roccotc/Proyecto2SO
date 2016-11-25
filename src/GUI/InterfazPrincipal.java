@@ -42,7 +42,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         setResizable(false);
         this.VectorDeProceso = VectorDeProceso;
         this.VectorDeRecurso = VectorDeRecurso;
-        this.Prediccion = new Predicción (VectorDeProceso.length, VectorDeRecurso.length, VectorDeRecurso);
+        this.Prediccion = new Predicción (VectorDeRecurso);
         this.Deteccion = new Detección (VectorDeRecurso);
         modelo = new DefaultListModel();
         ListaRecursosAsignados.setModel(modelo);
@@ -609,10 +609,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             
             Proceso p = new Proceso (IDProceso, NombreProceso.getText(), AuxMaxCantRecursosPerProcess);
             VectorDeProceso [IDProceso] = p;
-            IDProceso++;
-             
-            Prediccion.insertarProceso(VectorDeProceso [IDProceso].getMaxCantRecursos(), IDProceso);
             
+             
+            Prediccion.insertarProceso(VectorDeProceso[IDProceso].getMaxCantRecursos(),VectorDeProceso[IDProceso].getId() );
+            
+            IDProceso++;
             ListaProcesos.addItem(p.getNombre());
             modelo.removeAllElements();
             NombreProceso.setText("");
