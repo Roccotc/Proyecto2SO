@@ -681,8 +681,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         
         Solicitudes++;
         nSD.setText(Integer.toString(Solicitudes));
-        jLabel21.setText(Integer.toString(Solicitudes));
+        jLabel21.setText(Integer.toString(Solicitudes)); 
+        jLabel22.setText(Integer.toString(Prediccion.getProcesosBloqueados()));
+        jLabel23.setText(Integer.toString(Prediccion.getProcesosBloqueadosT()));
+        jLabel24.setText(Integer.toString(Prediccion.getProcesosFinalizados()));
+        jLabel25.setText(Long.toString(Prediccion.getTiempo()));
         NombreRecurso2.setText("");
+        
  
     }   
     }//GEN-LAST:event_SolicitarMouseClicked

@@ -119,6 +119,32 @@ public class Detección {
     public void setTiempo(long tiempo) {
         this.tiempo = tiempo;
     }
+
+    public int getpFin() {
+        return pFin;
+    }
+
+    public void setpFin(int pFin) {
+        this.pFin = pFin;
+    }
+
+    public int getpEli() {
+        return pEli;
+    }
+
+    public void setpEli(int pEli) {
+        this.pEli = pEli;
+    }
+
+    public int getBloqActual() {
+        return bloqActual;
+    }
+
+    public void setBloqActual(int bloqActual) {
+        this.bloqActual = bloqActual;
+    }
+    
+    
     
     
     // Constructor
@@ -131,14 +157,7 @@ public class Detección {
                 asignacion[i][j]=0;
             }
         }
-
-        
-        for (int i = 0; i < 150; i++) 
-        {
-            disponible[i]=x[i].getCantRecurso();
-        }
-        
-        
+                
         for (int i = 0; i < 150; i++) 
         {
             for (int j = 0; j < 150; j++) 
@@ -147,18 +166,15 @@ public class Detección {
             }
         }
         
-        
         for (int i = 0; i < 150; i++) 
         {
             vectorAuxiliar[i]=0;    
         }
-        
-        
+                
         for (int i = 0; i < 150; i++) 
         {
             marcados[i]=false;    
         }
-        
         
         for (int i = 0; i < 150; i++) {
             for (int j = 0; j < 150; j++) {
@@ -166,19 +182,16 @@ public class Detección {
             }
         }
     
- 
         for (int i = 0; i < 150; i++) 
         {
             eliminados[i]=0;           
         }
-        
-        
+                
         for (int i = 0; i < 150; i++)
         {
             finalizados[i]=0;           
         }
-        
-        
+               
         for (int i = 0; i < 150; i++) 
         {
             for (int j = 0; j < 150; j++) 
@@ -186,10 +199,21 @@ public class Detección {
                 bloqueados[i][j]=0;
             }
         }
+        
+        for (int i = 0; i < 150; i++) {
+            if (x[i]!=null) {
+                recursos[i] = x[i].getCantRecurso();
+            }
+            
+        }
+        
+         for (int i = 0; i < 150; i++) {
+            if (x[i]!=null) {
+                disponible[i] = x[i].getCantRecurso();
+            }
+        }
     }
     
-    
-  
     
     // ----------------------------- METODOS -----------------------------
 
@@ -203,6 +227,8 @@ public class Detección {
         
         marcados[idProceso]=false;
     }
+    
+   
     
     // Metodo que finaliza el proceso
     public void finalizarProceso (int idProceso)

@@ -21,7 +21,8 @@ public class Predicción {
     private int ProcesosSistema = 0;
     private int ProcesosT = 0;
     
-    // Getters and Setters
+    // ----------------------------- GET & SET -----------------------------
+    
     public int[][] getNecesarios() {
         return necesarios;
     }
@@ -70,14 +71,73 @@ public class Predicción {
         this.CantRecursos = CantRecursos;
     }
 
+    public long getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(long tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public int getProcesosBloqueados() {
+        return ProcesosBloqueados;
+    }
+
+    public void setProcesosBloqueados(int ProcesosBloqueados) {
+        this.ProcesosBloqueados = ProcesosBloqueados;
+    }
+
+    public int getProcesosBloqueadosT() {
+        return ProcesosBloqueadosT;
+    }
+
+    public void setProcesosBloqueadosT(int ProcesosBloqueadosT) {
+        this.ProcesosBloqueadosT = ProcesosBloqueadosT;
+    }
+
+    public int getProcesosFinalizados() {
+        return ProcesosFinalizados;
+    }
+
+    public void setProcesosFinalizados(int ProcesosFinalizados) {
+        this.ProcesosFinalizados = ProcesosFinalizados;
+    }
+
+    public int getSolicitudesRealizadas() {
+        return SolicitudesRealizadas;
+    }
+
+    public void setSolicitudesRealizadas(int SolicitudesRealizadas) {
+        this.SolicitudesRealizadas = SolicitudesRealizadas;
+    }
+
+    public int getProcesosSistema() {
+        return ProcesosSistema;
+    }
+
+    public void setProcesosSistema(int ProcesosSistema) {
+        this.ProcesosSistema = ProcesosSistema;
+    }
+
+    public int getProcesosT() {
+        return ProcesosT;
+    }
+
+    public void setProcesosT(int ProcesosT) {
+        this.ProcesosT = ProcesosT;
+    }
+
     
     
-    //Constructores
+    // --------------------------- CONSTRUCTOR ---------------------------
     
 
     public Predicción(Recurso [] x) {
 
         this.CantRecursos = x.length;
+        this.CantProcesos = 150;
+        
+        
         
         for (int i = 0; i < 150; i++) {
             for (int j = 0; j < 150; j++) {
@@ -125,9 +185,7 @@ public class Predicción {
     
     // Metodo que Inicializa las matrices
     public void entrada() {
-         
-        
-        
+           
     }
     
     //Metodo que Inserta cada proceso en las matrices Maximos y Asignados 
@@ -232,7 +290,7 @@ public class Predicción {
     // Metodo que calcula la matriz Necesidad
     public void calculoNecesarios() {
         
-        for (int i = 0; i < CantProcesos; i++) {
+        for (int i = 0; i < 150; i++) {
             for (int j = 0; j < CantRecursos; j++) 
             {
                 necesarios[i][j] = maximos[i][j] - asignados[i][j];
@@ -301,6 +359,9 @@ public class Predicción {
     
     // Metodo que ejecuta el algoritmo
     public void ejecutar(int idProceso, int [] solicitud){
+        
+        System.out.println(CantProcesos);
+        
         long tiempo = System.nanoTime();
         boolean end = comprobarFinalizado(idProceso);
         if( end == false){
