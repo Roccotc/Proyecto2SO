@@ -340,7 +340,7 @@ public class Predicción {
                     for (int k = 0; k < CantRecursos; k++) {
                         auxiliar[k] = auxiliar[k] - necesarios[i][k] + maximos[i][k];
                     }
-                    System.out.println("Proceso asignado : " + i);
+                    //System.out.println("Proceso asignado : " + i);
                     asignado = done[i] = true;
                     j++;
                 }
@@ -353,7 +353,7 @@ public class Predicción {
         
         if (j == CantProcesos) 
         {
-            System.out.println("\nAsignado de forma segura");
+            ConsolePrediccion.append("Asignado de forma segura \n");
             return true;
         } 
         else 
@@ -383,7 +383,7 @@ public class Predicción {
                 }
             }
             else
-                System.out.println("SE NEGO LA SOLICITUD");
+                 ConsolePrediccion.append("Solicitud Negada \n");
         }
         long finishTime = System.nanoTime();
         tiempo = (finishTime-tiempo)/1000000;
@@ -410,7 +410,7 @@ public class Predicción {
             
             finalizados[idProceso]= 1;
             ProcesosFinalizados++;
-            ConsolePrediccion.append("Proces "+idProceso+" finalizo \n");
+            ConsolePrediccion.append("Proceso Numero: "+idProceso+"  finalizo exitosamente \n");
         }
     }
     
