@@ -14,6 +14,8 @@ public class Detección {
     private int eliminados [];
     private int CantProcesos;
     private int CantRecursos;
+    private int pF = 0;
+    private int pE = 0;
     private long tiempo;
     private Recurso recursos [];
 
@@ -172,6 +174,7 @@ public class Detección {
             }
             
             finalizados[idProceso]= 1;
+            pF++;
         }
     }
     
