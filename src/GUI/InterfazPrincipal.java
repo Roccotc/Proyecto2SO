@@ -40,6 +40,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         this.VectorDeProceso = VectorDeProceso;
         this.VectorDeRecurso = VectorDeRecurso;
         this.Prediccion = new Predicción (VectorDeRecurso);
+        this.Deteccion = new Detección ();
         modelo = new DefaultListModel();
         ListaRecursosAsignados.setModel(modelo);
         llenarComboBoxRecursos();
@@ -648,7 +649,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     AuxSolicitud [i] = 0;
                 }
                 AuxSolicitud [RecursoDelProceso.getSelectedIndex()] = CantidadSolicitada;
-                Prediccion.ejecutar();
+                //Prediccion.ejecutar();
             }
             else {
                 JOptionPane.showMessageDialog(null, "ERROR: El recurso solicitado del proceso sobrepasa el max especificado! ");
