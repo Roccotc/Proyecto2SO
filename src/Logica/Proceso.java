@@ -27,6 +27,10 @@ public class Proceso {
     public int[] getMaxCantRecursos() {
         return MaxCantRecursos;
     }
+    
+    public int getMaxCantRecursosPOSICION(int i) {
+        return MaxCantRecursos[i];
+    }
 
     public void setMaxCantRecursos(int[] MaxCantRecursos) {
         this.MaxCantRecursos = MaxCantRecursos;

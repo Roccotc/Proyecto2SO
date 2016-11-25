@@ -6,7 +6,7 @@ public class Predicción {
     private int necesarios [][];     // Matriz resta entre maximos y asignados  
     private int asignados [][];      // Matriz que posee los recursos asignados em cierto momento
     private int maximos [][];        // Matriz que posee la cantidad maxima de recursos de cada Proceso
-    private int recursos [];         // Vector que posee los recursos maximos del sistema 
+    private Recurso recursos [];         // Vector que posee los recursos maximos del sistema 
     private int disponibles [];      // Vector que posee los recursos disponibles por asignar 
     private int finalizados [];      // Vector que indica si el proceso hs finalizado o no
     private int CantProcesos;
@@ -82,11 +82,11 @@ public class Predicción {
     
     
     //Constructores
-    public Predicción(int[] recursos) {
+    public Predicción(Recurso[] recursos) {
         this.recursos = recursos;
     }
 
-    public Predicción(int[][] necesarios, int[][] asignados, int[][] maximos, int[] recursos, int[] disponibles, int[] finalizados, int CantProcesos, int CantRecursos) {
+    public Predicción(int[][] necesarios, int[][] asignados, int[][] maximos, Recurso[] recursos, int[] disponibles, int[] finalizados, int CantProcesos, int CantRecursos) {
         this.necesarios = necesarios;
         this.asignados = asignados;
         this.maximos = maximos;
