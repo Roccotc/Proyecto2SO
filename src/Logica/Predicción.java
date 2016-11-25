@@ -6,14 +6,13 @@ public class Predicción {
     private int necesarios [][];     // Matriz resta entre maximos y asignados  
     private int asignados [][];      // Matriz que posee los recursos asignados em cierto momento
     private int maximos [][];        // Matriz que posee la cantidad maxima de recursos de cada Proceso
-    private int bloqueados[][];
-    private Recurso recursos [];         // Vector que posee los recursos maximos del sistema 
+    private int bloqueados[][];      // Matriz que posee los procesos bloqueados
+    private Recurso recursos [];     // Vector que posee los recursos maximos del sistema 
     private int disponibles [];      // Vector que posee los recursos disponibles por asignar 
     private int finalizados [];      // Vector que indica si el proceso hs finalizado o no
     private int CantProcesos;
     private int CantRecursos;
-    private int posi = 0;
-    private int posj;
+    private long tiempo;
     
     
     // Getters and Setters
@@ -65,21 +64,6 @@ public class Predicción {
         this.CantRecursos = CantRecursos;
     }
 
-    public int getPosi() {
-        return posi;
-    }
-
-    public void setPosi(int posi) {
-        this.posi = posi;
-    }
-
-    public int getPosj() {
-        return posj;
-    }
-
-    public void setPosj(int posj) {
-        this.posj = posj;
-    }
     
     
     //Constructores
