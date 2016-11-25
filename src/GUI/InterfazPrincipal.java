@@ -594,22 +594,28 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         
         if (!"".equals(NombreProceso.getText())) 
         {
+            int AuxMaxCantRecursosPerProcess[] = new int [150];
+            for (int i = 0; i < AuxMaxCantRecursosPerProcess.length ; i++) {
+                AuxMaxCantRecursosPerProcess[i]=MaxCantRecursosPerProcess[i];
+            }
             
-            Proceso p = new Proceso (IDProceso, NombreProceso.getText(), MaxCantRecursosPerProcess);
+            Proceso p = new Proceso (IDProceso, NombreProceso.getText(), AuxMaxCantRecursosPerProcess);
             VectorDeProceso [IDProceso] = p;
             IDProceso++;
              
-            for (int i = 0; i < MaxCantRecursosPerProcess.length ; i++) {
-                MaxCantRecursosPerProcess[i]=0;
-            }
-        
+            
+            
+            
+            
             ListaProcesos.addItem(p.getNombre());
             modelo.removeAllElements();
             NombreProceso.setText("");
         }
         else { JOptionPane.showMessageDialog(null, "ERROR: por favor Describa el nombre del proceso!");  }
-        
-        
+        for (int i = 0; i < MaxCantRecursosPerProcess.length ; i++) {
+                MaxCantRecursosPerProcess[i]=0;
+            }
+        System.out.println("VceMaxDeRec "+VectorDeProceso[0].getMaxCantRecursosPOSICION(0));
         
     }//GEN-LAST:event_CrearProcesoActionPerformed
 
@@ -623,6 +629,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         
         idRecurso = ComboBoxTipoRecursos.getSelectedIndex();
         String TipoRecurso = ComboBoxTipoRecursos.getSelectedItem().toString();
+        
         
         if (TipoRecurso!=null && !"".equals(CMaxProceso.getText())) 
         {
@@ -649,14 +656,15 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     AuxSolicitud [i] = 0;
                 }
                 AuxSolicitud [RecursoDelProceso.getSelectedIndex()] = CantidadSolicitada;
-                //Prediccion.ejecutar();
+                Prediccion.ejecutar(VectorDeProceso[ListaProcesos.getSelectedIndex()].getId(), AuxSolicitud);
             }
             else {
                 JOptionPane.showMessageDialog(null, "ERROR: El recurso solicitado del proceso sobrepasa el max especificado! ");
             }
         }
-        else {
-            JOptionPane.showMessageDialog(null, "ERROR: Este recurso no es usado por el proceso"+VectorDeProceso[ListaProcesos.getSelectedIndex()].getNombre());
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "ERROR: Este recurso no es usado por el proceso: "+VectorDeProceso[ListaProcesos.getSelectedIndex()].getNombre());
         }
         
         
