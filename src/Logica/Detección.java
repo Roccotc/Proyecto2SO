@@ -14,8 +14,9 @@ public class Detección {
     private int eliminados [];
     private int CantProcesos;
     private int CantRecursos;
-    private int pF = 0;
-    private int pE = 0;
+    private int pFin = 0;
+    private int pEli = 0;
+    private int bloqActual=0;
     private long tiempo;
     private Recurso recursos [];
 
@@ -153,6 +154,8 @@ public class Detección {
         for (int j = 0; j < maxRecursosPerProceso.length; j++) {
             maximos[idProceso][j]=maxRecursosPerProceso[j];
         } 
+        
+        marcados[idProceso]=false;
     }
     
     // Metodo que finaliza el proceso
@@ -174,7 +177,7 @@ public class Detección {
             }
             
             finalizados[idProceso]= 1;
-            pF++;
+            pFin++;
         }
     }
     
@@ -251,6 +254,7 @@ public class Detección {
             asignacion[idProceso][i] = asignacion[idProceso][i] + bloqueados[idProceso][i];
             bloqueados [idProceso][i] = 0;
         }
+        bloqActual--;
     }
     
     // Metodo que bloquea a un proceso

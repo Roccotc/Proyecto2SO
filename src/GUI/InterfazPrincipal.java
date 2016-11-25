@@ -43,7 +43,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         this.VectorDeProceso = VectorDeProceso;
         this.VectorDeRecurso = VectorDeRecurso;
         this.Prediccion = new Predicción (VectorDeRecurso);
-        this.Deteccion = new Detección (VectorDeRecurso, NpSistemaDet, TotEliminados, totBloqDet);
+        this.Deteccion = new Detección (VectorDeRecurso);
         modelo = new DefaultListModel();
         ListaRecursosAsignados.setModel(modelo);
         llenarComboBoxRecursos();
@@ -611,7 +611,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             VectorDeProceso [IDProceso] = p;
             IDProceso++;
              
-            
+            Prediccion.insertarProceso(VectorDeProceso [IDProceso].getMaxCantRecursos(), IDProceso)
             
             
             
@@ -663,7 +663,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     if (!"".equals(NombreRecurso2.getText())){
         if (VectorDeProceso[ListaProcesos.getSelectedIndex()].getMaxCantRecursosPOSICION(RecursoDelProceso.getSelectedIndex())!=0) {
             int CantidadSolicitada = Integer.parseInt(NombreRecurso2.getText());
-            if ( CantidadSolicitada  < VectorDeProceso[ListaProcesos.getSelectedIndex()].getMaxCantRecursosPOSICION(RecursoDelProceso.getSelectedIndex())) {
+            if ( CantidadSolicitada  <= VectorDeProceso[ListaProcesos.getSelectedIndex()].getMaxCantRecursosPOSICION(RecursoDelProceso.getSelectedIndex())) {
                 int AuxSolicitud [] = new int [150];
                 for (int i = 0; i < AuxSolicitud.length ; i++) {
                     AuxSolicitud [i] = 0;
