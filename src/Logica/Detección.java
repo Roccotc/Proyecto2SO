@@ -465,7 +465,7 @@ public class Detección {
     }
     
     // Metodo que ejecuta el algoritmo 
-    private void ejecutar(int idProcesos, int[] solicitud){
+    public void ejecutar(int idProcesos, int[] solicitud){
        
         long tiempo = System.nanoTime();
         boolean finalizo = comprobarFinalizado(idProcesos);

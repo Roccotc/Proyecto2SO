@@ -309,11 +309,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                             .addComponent(ListaProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Solicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(75, 75, 75)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NombreRecurso2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RecursoDelProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(RecursoDelProceso, 0, 146, Short.MAX_VALUE)
+                            .addComponent(NombreRecurso2)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(155, 155, 155)
                         .addComponent(jLabel5)))
@@ -669,6 +669,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 }
                 AuxSolicitud [RecursoDelProceso.getSelectedIndex()] = CantidadSolicitada;
                 Prediccion.ejecutar(VectorDeProceso[ListaProcesos.getSelectedIndex()].getId(), AuxSolicitud);
+                Deteccion.ejecutar(VectorDeProceso[ListaProcesos.getSelectedIndex()].getId(), AuxSolicitud);
             }
             else {
                 JOptionPane.showMessageDialog(null, "ERROR: El recurso solicitado del proceso sobrepasa el max especificado! ");
@@ -686,6 +687,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabel23.setText(Integer.toString(Prediccion.getProcesosBloqueadosT()));
         jLabel24.setText(Integer.toString(Prediccion.getProcesosFinalizados()));
         jLabel25.setText(Long.toString(Prediccion.getTiempo()));
+        nBloqDet.setText(Integer.toString(Deteccion.getBloqActual()));
+        totBloqDet.setText(Integer.toString(Deteccion.getProcesosBloqueadosT()));
+        TotEliminados.setText(Integer.toString(Deteccion.getProcesosEliminados()));
         NombreRecurso2.setText("");
         
  

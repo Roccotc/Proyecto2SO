@@ -44,6 +44,7 @@ public class RecursosDelSistema extends javax.swing.JFrame {
         Iniciar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Recursos del Sistema");
 
         jLabel1.setFont(new java.awt.Font("TI-Nspire Sans", 0, 18)); // NOI18N
