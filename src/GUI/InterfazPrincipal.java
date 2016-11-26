@@ -612,6 +612,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             
              
             Prediccion.insertarProceso(VectorDeProceso[IDProceso].getMaxCantRecursos(),VectorDeProceso[IDProceso].getId() );
+            Deteccion.insertarProceso(VectorDeProceso[IDProceso].getMaxCantRecursos(),VectorDeProceso[IDProceso].getId());
             
             IDProceso++;
             ListaProcesos.addItem(p.getNombre());
@@ -692,6 +693,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         totBloqDet.setText(Integer.toString(Deteccion.getProcesosBloqueadosT()));
         TotEliminados.setText(Integer.toString(Deteccion.getProcesosEliminados()));
         NombreRecurso2.setText("");
+        
+        jLabel20.setText(Integer.toString(Prediccion.getProcesosSistema()));
+        NpSistemaDet.setText(Integer.toString(Deteccion.getProcesosSistema()));
         
  
     }   

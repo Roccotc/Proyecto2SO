@@ -410,6 +410,7 @@ public class Predicción {
             
             finalizados[idProceso]= 1;
             ProcesosFinalizados++;
+            ProcesosSistema--;
             ConsolePrediccion.append("Proceso Numero: "+idProceso+" finalizo exitosamente \n");
         }
     }

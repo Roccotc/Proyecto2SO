@@ -456,7 +456,6 @@ public class Detección {
             if(marcados[i] == false){
                 
                 eliminarProceso(i);
-                ProcesosEliminados++;
                 ProcesosT--;
                 exito = false;
             }
@@ -490,6 +489,8 @@ public class Detección {
         long finishTime = System.nanoTime();
         tiempo = (finishTime - tiempo)/1000000;
         
+        System.out.println(ProcesosSistema);
+        
     }
     
     // Metodo que finaliza el proceso
@@ -512,9 +513,11 @@ public class Detección {
             
             finalizados[idProceso]= 1;
             pFin++;
-            ProcesosSistema++;
+            ProcesosSistema--;
+            ConsoleDeteccion.append("Proceso Numero: "+idProceso+" finalizo exitosamente \n");
         }
     }
+    
     // Metodo que comprueba si un proceso ha finalizado
     public boolean comprobarFinalizado (int idProceso) {
         if (finalizados[idProceso]!=0) {
@@ -536,6 +539,7 @@ public class Detección {
         
         eliminados[idProceso] = 1;
         ProcesosEliminados++;
+        ProcesosSistema--;
         ConsoleDeteccion.append("Se elimino el proceso "+idProceso+" \n");
     }
     
