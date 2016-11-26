@@ -267,19 +267,19 @@ public class Predicción {
                 disponibles[i] = disponibles[i] + solicitud[i];
                  
             }
-            
+            ProcesosBloqueados++;
+            ProcesosBloqueadosT++;
+            ConsolePrediccion.append("Se Bloqueo el proceso "+idProceso+" \n");
         }
         else
         {
             for (int i = 0; i <solicitud.length; i++) {
                 bloqueados[idProceso][i] = solicitud[i];
             }
-            
-        }
-        
             ProcesosBloqueados++;
             ProcesosBloqueadosT++;
             ConsolePrediccion.append("Se Bloqueo el proceso "+idProceso+" \n");
+        }
     }
     
     // Metodo que desbloquea a un proceso
