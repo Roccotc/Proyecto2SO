@@ -687,8 +687,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabel22.setText(Integer.toString(Prediccion.getProcesosBloqueados()));
         jLabel23.setText(Integer.toString(Prediccion.getProcesosBloqueadosT()));
         jLabel24.setText(Integer.toString(Prediccion.getProcesosFinalizados()));
-
         jLabel25.setText(Long.toString(Prediccion.getTiempo()));
+        
+        TiempoDeteccion.setText(Long.toString(Deteccion.getTiempo()));
         nBloqDet.setText(Integer.toString(Deteccion.getBloqActual()));
         totBloqDet.setText(Integer.toString(Deteccion.getProcesosBloqueadosT()));
         TotEliminados.setText(Integer.toString(Deteccion.getProcesosEliminados()));

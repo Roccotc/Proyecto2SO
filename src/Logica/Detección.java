@@ -466,7 +466,7 @@ public class Detección {
     // Metodo que ejecuta el algoritmo 
     public void ejecutar(int idProcesos, int[] solicitud){
        
-        long tiempo = System.nanoTime();
+        long tiempoAux = System.nanoTime();
         boolean finalizo = comprobarFinalizado(idProcesos);
         boolean eliminado = comprobarEliminado(idProcesos);
         
@@ -487,7 +487,7 @@ public class Detección {
         }
         
         long finishTime = System.nanoTime();
-        tiempo = (finishTime - tiempo)/1000000;
+        tiempo = (finishTime - tiempoAux)/1000000;
         
         System.out.println(ProcesosSistema);
         
